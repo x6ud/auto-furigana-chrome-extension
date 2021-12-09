@@ -1,0 +1,209 @@
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="vue/vue.global.prod.js"></script>
+
+    <script type="text/template" id="template">
+        <div class="rows">
+            <div class="container logo">
+                <img src="icon.png" alt="" width="20" height="20">
+                &nbsp;&nbsp;
+                <span>Auto Furigana</span>
+                <div style="flex: 1 1;"></div>
+                <a href="https://ko-fi.com/x6udpngx" target="_blank" title="Support Me">
+                    <img src="./ko-fi.png" alt="">
+                </a>
+            </div>
+
+            <hr>
+
+            <div class="container rows">
+                <div class="form-item">
+                    <div>Enable on</div>
+                </div>
+
+                <div class="sep"></div>
+
+                <div class="form-item">
+                    <label>All new pages</label>
+                    <div class="switch"
+                         :class="{on: enableOnAllPage}"
+                         @click="setEnableOnAllPage(!enableOnAllPage)"
+                    ></div>
+                </div>
+
+                <div class="sep"></div>
+
+                <div class="form-item">
+                    <label>New pages of this site</label>
+                    <div class="switch"
+                         :class="{on: enableOnThisSite}"
+                         @click="setEnableOnThisSite(!enableOnThisSite)"
+                    ></div>
+                </div>
+                <div style="color: #999;">{{ siteDomain }}</div>
+
+                <div class="sep"></div>
+
+                <div class="form-item">
+                    <label>Current page</label>
+                    <div class="switch"
+                         :class="{on: enableOnThisTab}"
+                         @click="setEnableOnThisTab(!enableOnThisTab)"
+                    ></div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="container rows">
+                <div class="form-item">
+                    <label>Show Google translation on mouse hover</label>
+                    <div class="switch"
+                         :class="{on: showTranslationOnMouseHover}"
+                         @click="setShowTranslationOnMouseHover(!showTranslationOnMouseHover)"
+                    ></div>
+                </div>
+
+                <div class="sep"></div>
+
+                <div class="form-item">
+                    <label>Target language</label>
+                    <select style="width: 100px;"
+                            v-model="targetLanguage"
+                    >
+                        <option value="ar">Arabic</option>
+                        <option value="pt-BR">Brazilian Portuguese</option>
+                        <option value="zh-CN">Chinese (Simplified)</option>
+                        <option value="zh-TW">Chinese (Traditional)</option>
+                        <option value="cs">Czech</option>
+                        <option value="nl">Dutch</option>
+                        <option value="en-uk">English (UK)</option>
+                        <option value="en">English (US)</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="hi">Hindi</option>
+                        <option value="it">Italian</option>
+                        <option value="ko">Korean</option>
+                        <option value="ru">Russian</option>
+                        <option value="sk">Slovak</option>
+                        <option value="tr">Turkish</option>
+                        <option value="es">Spanish</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .container {
+            padding: 8px 12px;
+        }
+
+        .rows {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cols {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 500;
+            color: #5a5a5a;
+        }
+
+        hr {
+            width: 100%;
+            height: 1px;
+            border: none;
+            background: #f0f0f0;
+            margin: 0;
+        }
+
+        .sep {
+            margin-bottom: .5em;
+        }
+
+        .form-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-item label {
+            flex: 1 1;
+            min-width: 0;
+            font-weight: 500;
+            padding-right: 1em;
+        }
+
+        .switch {
+            position: relative;
+            box-sizing: border-box;
+            width: 40px;
+            height: 20px;
+            border-radius: 10px;
+            background: #bdc1c6;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .switch.disabled {
+            background: #dbdde3 !important;
+            cursor: default !important;
+        }
+
+        .switch:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 4px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 6px;
+            background: #fff;
+            transition: all .3s;
+        }
+
+        .switch.on {
+            background: #1a73e8;
+        }
+
+        .switch.on:before {
+            left: 24px;
+        }
+
+        select {
+            height: 24px;
+            line-height: 24px;
+            border: none;
+            border-radius: 4px;
+            background: #f1f3f4;
+            outline: none;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: inherit;
+            color: #1890ff;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script type="text/javascript" src="popup-sandbox.js"></script>
+</body>
+</html>

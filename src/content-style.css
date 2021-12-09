@@ -1,0 +1,27 @@
+ruby.chrome-ext-furigana rt {
+    user-select: none;
+    opacity: .8;
+    font-size: max(50%, 12px);
+}
+
+ruby.chrome-ext-furigana:hover,
+ruby.chrome-ext-furigana:hover rt {
+    color: white !important;
+    background: red !important;
+}
+
+.chrome-ext-furigana-translation {
+    display: none;
+    position: fixed;
+    z-index: 50000;
+    padding: 2px 6px;
+    background: #fff;
+    border: solid 1px #000;
+    font-size: 14px !important;
+    line-height: 1.5em !important;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif !important;
+}
+
+.chrome-ext-furigana-translation.show {
+    display: inline-block;
+}

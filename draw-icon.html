@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
+<script>
+    const activeColor = '#1a73e8';
+    const inactiveColor = '#999';
+    const size = 64;
+
+    drawIcon(document.getElementById('canvas1'), size, activeColor);
+    drawIcon(document.getElementById('canvas2'), size, inactiveColor);
+
+    function drawIcon(canvas, size, color) {
+        /** @type {CanvasRenderingContext2D} */
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.height = size;
+
+        function roundRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        roundRect(ctx, 0, 0, size, size, 8 / 32 * size);
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        ctx.fillStyle = '#fff';
+        {
+            ctx.font = `${Math.round(size * 0.6)}px "Helvetica Neue", Helvetica`
+            const text1 = 'ふ';
+            const text1Size = ctx.measureText(text1);
+            const height = text1Size.actualBoundingBoxAscent + text1Size.actualBoundingBoxDescent;
+
+            ctx.font = `${Math.round(size * 0.16)}px "Helvetica Neue", Helvetica`
+            const text2 = 'fu';
+            const text2Size = ctx.measureText(text2);
+            const height2 = text1Size.actualBoundingBoxAscent + text1Size.actualBoundingBoxDescent;
+
+            ctx.font = `${Math.round(size * 0.6)}px sans-serif`
+            ctx.fillText(text1, size / 2 - text1Size.width / 2, size / 2 + height / 2 + height2 / 7);
+
+            ctx.font = `${Math.round(size * 0.25)}px sans-serif`
+            ctx.fillText(text2, size / 2 - text2Size.width / 2 * 1.4, size / 2 + height2 / 2 - height2 + height2 / 7 / 2);
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "name": "Auto Furigana",
+  "description": "Auto insert romaji to Japanese.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "author": "x6udpngx",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "css": [
+        "content-style.css"
+      ],
+      "js": [
+        "japanese.js/japanese.js",
+        "kuromoji/kuromoji.js",
+        "content-script.js"
+      ]
+    }
+  ],
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "sandbox": {
+    "pages": [
+      "popup-sandbox.html"
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "/kuromoji/dict/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://clients5.google.com/"
+  ],
+  "permissions": [
+    "tabs",
+    "storage"
+  ]
+}
